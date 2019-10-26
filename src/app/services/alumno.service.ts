@@ -40,4 +40,12 @@ export class AlumnoService {
     
   }
   
+  getHorarioActual( codigo: string ) {
+    let httpParams = new HttpParams()
+                        .set('id', codigo );
+    
+    return this.http.get(apiKey+'getHorarioActual.php', { params: httpParams } );
+    
+  }
+  
 }

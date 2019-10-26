@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { MenuController, AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 import { AlumnoService } from '../../services/alumno.service';
 
@@ -14,7 +15,8 @@ export class InicioPage implements OnInit {
   codigo: string;
   nip: string;
 
-  constructor(public menu: MenuController, public alumnoService: AlumnoService) {
+  constructor(public menu: MenuController, public alumnoService: AlumnoService, private router: Router, 
+    public alertController: AlertController ) {
     this.menuActive();
    }
   //funcion para inhabilitar menu en una pagina false=no mostrar true=mostrar menu
@@ -30,12 +32,29 @@ export class InicioPage implements OnInit {
     });
   }
   
+  async alerta() {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      subHeader: 'Codigo o NIP invalidos',
+      message: 'Verifique que el codigo o el NIP estan bien escritos.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+  
   validar() {
     console.log('Prueba', this.codigo, ' ', this.nip);
     
     this.alumnoService.validarAlumno( this.codigo, this.nip )
     .subscribe( resp => {
         console.log(resp);
+        if(resp)    {
+            this.router.navigateByUrl('/principal?codigo='+this.codigo);
+        }
+        else    {
+            this.alerta();
+        }
     });
   }
 
