@@ -8,37 +8,33 @@
 
     <ion-grid>
         <ion-row>
+           <ion-col>
+                HORA
+           </ion-col>
             <ion-col>
-                Lunes
+                LUN
             </ion-col>
             <ion-col>
-                Martes
+                MAR
             </ion-col>
             <ion-col>
-                Miercoles
+                MIE
             </ion-col>
             <ion-col>
-                Jueves
+                JUE
             </ion-col>
             <ion-col>
-                Viernes
+                VIE
+            </ion-col>
+            <ion-col>
+                SAB
             </ion-col>
         </ion-row>
         <ion-row>
-            <ion-col>
-                
-            </ion-col>
-            <ion-col>
-                Metodos mates
-            </ion-col>
-            <ion-col>
-                Progra
-            </ion-col>
-            <ion-col>
-                Estrucutra de datos
-            </ion-col>
-            <ion-col>
-                
+            <ion-col size="1.7" *ngFor= "let m of horario">
+              <ion-label >
+                  <font size="2"> {{ m }} </font>
+              </ion-label>
             </ion-col>
         </ion-row>
     </ion-grid>
