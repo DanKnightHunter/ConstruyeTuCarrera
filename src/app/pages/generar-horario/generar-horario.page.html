@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>generar-horario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+    <ion-item>
+      <ion-label position="floating">Floating Label</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-list>
+      <ion-list-header>Interface Options</ion-list-header>
+
+      <ion-item>
+        <ion-label>Turno</ion-label>
+        <ion-select [interfaceOptions]="opcionesTurno" interface="alert" multiple="false" placeholder="Seleccione turno">
+          <ion-select-option value="matutino">Matutino</ion-select-option>
+          <ion-select-option value="vespertino">Vespertino</ion-select-option>
+        </ion-select>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label>Dias</ion-label>
+        <ion-select [interfaceOptions]="opcionesDia" interface="alert" multiple="true" placeholder="Seleccione dias" >
+          <ion-select-option value="lunes">Lunes</ion-select-option>
+          <ion-select-option value="martes">Martes</ion-select-option>
+          <ion-select-option value="miercoles">Miercoles</ion-select-option>
+          <ion-select-option value="jueves">Jueves</ion-select-option>
+          <ion-select-option value="viernes">Viernes</ion-select-option>
+          <ion-select-option value="sabado">Sabado</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <ion-list>
+     <ion-label>Rango de horas</ion-label>
+      <ion-item>
+        <ion-range dualKnobs="true" min="700" max="2100" step="100" pin="true" snaps="true">
+          <ion-icon size="small" slot="start" name="sunny"></ion-icon>
+          <ion-icon slot="end" name="moon"></ion-icon>
+        </ion-range>
+      </ion-item>
+   
+    </ion-list>
+    
+    <ion-list>
+      <ion-item>
+        <ion-label>Tiempo de traslado</ion-label>
+        <ion-icon slot="start" name="walk"></ion-icon>
+        <ion-select [interfaceOptions]="opcionesDia" interface="alert" multiple="true" placeholder="Seleccione dias" >
+          <ion-select-option *ngFor = "let t of tiempo" value={{t}}> {{ t }} </ion-select-option>
+        </ion-select>
+      </ion-item>
+   
+    </ion-list>
+
+
+
+
+</ion-content>
