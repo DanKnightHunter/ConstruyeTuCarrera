@@ -1,0 +1,18 @@
+[
+    {
+        "name": "Principal",
+        "link": "/principal"
+    },
+    {
+        "name": "Generar Horario",
+        "link": "/generar-horario"
+    },
+    {
+        "name": "Perfil",
+        "link": "/perfil"
+    },
+    {
+        "name": "Cerrar Sesion",
+        "link": "/inicio"
+    }
+]

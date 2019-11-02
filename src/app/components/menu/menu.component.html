@@ -1,0 +1,21 @@
+<ion-menu side="start" menuId="first" contentId="principal">
+    <ion-header>
+        <ion-toolbar color="primary">
+            <ion-title>Menu Principal</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list>
+            <ion-menu-toggle>
+                <!-- <ion-item *ngFor="let c of menuOpts | async" 
+                    [routerLink]="c.link">
+                    <ion-label>{{ c.name }}</ion-label>
+                </ion-item> -->
+                <ion-item (click)="onClickPrincipal()">Principal</ion-item>
+                <ion-item (click)="onClickGenerar()">Generar Horario</ion-item>
+                <ion-item (click)="onClickPerfil()">Perfil</ion-item>
+                <ion-item (click)="onClickCerrar()">Cerrar sesion</ion-item>
+            </ion-menu-toggle>
+        </ion-list>
+    </ion-content>
+</ion-menu>

@@ -15,12 +15,12 @@ export class InicioPage implements OnInit {
   codigo: string;
   nip: string;
 
-  constructor(public menu: MenuController, public alumnoService: AlumnoService, private router: Router, 
-    public alertController: AlertController ) {
+  constructor(public menu: MenuController, public alumnoService: AlumnoService, private router: Router,
+              public alertController: AlertController ) {
     this.menuActive();
    }
-  //funcion para inhabilitar menu en una pagina false=no mostrar true=mostrar menu
-   menuActive(){
+  // funcion para inhabilitar menu en una pagina false=no mostrar true=mostrar menu
+   menuActive() {
      this.activeMenu = 'first';
      this.menu.enable(false, 'first');
    }
@@ -31,7 +31,7 @@ export class InicioPage implements OnInit {
         console.log('Alumno', resp);
     });
   }
-  
+
   async alerta() {
     const alert = await this.alertController.create({
       header: 'Error',
@@ -42,17 +42,16 @@ export class InicioPage implements OnInit {
 
     await alert.present();
   }
-  
+
   validar() {
     console.log('Prueba', this.codigo, ' ', this.nip);
-    
+
     this.alumnoService.validarAlumno( this.codigo, this.nip )
     .subscribe( resp => {
         console.log(resp);
-        if(resp)    {
-            this.router.navigateByUrl('/principal?codigo='+this.codigo);
-        }
-        else    {
+        if (resp)    {
+            this.router.navigateByUrl('/principal?codigo=' + this.codigo);
+        } else {
             this.alerta();
         }
     });

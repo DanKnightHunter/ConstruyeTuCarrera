@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AlumnoService } from '../../services/alumno.service';
+import { Observable } from 'rxjs';
+import { Componente } from '../../interfaces/interfaces';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-menu',
@@ -7,8 +11,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
 
-  ngOnInit() {}
+  menuOpts: Observable<Componente[]>;
 
+  constructor( private dataService: AlumnoService, private navCtrl: NavController ) { }
+
+  ngOnInit() {
+    this.menuOpts = this.dataService.getMenuOpt();
+  }
+  onClickPrincipal() {
+    this.navCtrl.navigateRoot('/principal');
+  }
+  onClickGenerar() {
+    this.navCtrl.navigateRoot('/generar-horario');
+  }
+  onClickPerfil() {
+    this.navCtrl.navigateRoot('/perfil');
+  }
+  onClickCerrar() {
+    this.navCtrl.navigateRoot('/inicio');
+  }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-generar-horario',
@@ -12,7 +13,7 @@ export class GenerarHorarioPage implements OnInit {
   hora = [];
   
 
-  constructor() { }
+  constructor( private menuCtrl: MenuController ) { }
 
   ngOnInit() {
     for(var i = 5, j = 1; i < 135; i+=5, j++)    {
@@ -38,5 +39,7 @@ export class GenerarHorarioPage implements OnInit {
         message: 'El horario se creara en los dias selecionados',
         translucent: true,
     };
-
+    toogleMenu() {
+      this.menuCtrl.toggle();
+  }
 }

@@ -5,13 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { GenerarHorarioPage } from './generar-horario.page';
-import { ComponentsModule } from '../../components/components.module';
+import { HorarioGeneradoPage } from './horario-generado.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: GenerarHorarioPage
+    component: HorarioGeneradoPage
   }
 ];
 
@@ -20,9 +19,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes),
-    ComponentsModule
+    RouterModule.forChild(routes)
   ],
-  declarations: [GenerarHorarioPage]
+  declarations: [HorarioGeneradoPage]
 })
-export class GenerarHorarioPageModule {}
+export class HorarioGeneradoPageModule {}

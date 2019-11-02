@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AlumnoService } from '../../services/alumno.service';
+import { MenuController } from '@ionic/angular';
+import { Componente } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-principal',
@@ -19,62 +21,69 @@ export class PrincipalPage implements OnInit {
     'V',
     'S',
   ];
-  
-  constructor( public alumnoService: AlumnoService ) { }
-  
+
+  componentes: Componente[] = [];
+
+  activeMenu: string;
+
+  constructor( public alumnoService: AlumnoService, private menuCtrl: MenuController) {
+    this.menuActive();
+   }
+
+   // funcion para inhabilitar menu en una pagina false=no mostrar true=mostrar menu
+   menuActive() {
+    this.activeMenu = 'first';
+    this.menuCtrl.enable(true, 'first');
+  }
   ngOnInit() {
+
     this.alumnoService.getHorarioActual( '1' )
     .subscribe( resp => {
         var keys = Object.keys( resp );
         var len = keys.length;
         var flag = false;
-        
+
         console.log(resp);
         console.log(len);
-        
+
         for ( var hora = 700; hora < 2200; hora += 100) {
-            //console.log(i);
-            for(var i = 0; i<7; i++){
-                //console.log(hora);
+            // console.log(i);
+            for (var i = 0; i < 7; i++){
+                // console.log(hora);
                 flag = false;
-                
-                if(i == 0)  {
-                    this.horario.push(hora+'-'+(hora+100));
-                }
-                else    {
-                    for(var j = 0; j <= len; j++)    {
-                        //console.log(resp['Materia'][j]['Hora'][0]['dia']);
-                        if( resp['Materia'][j]['Hora'][0]['dia'] == this.dias[i] || resp['Materia'][j]['Hora'][1]['dia'] == this.dias[i] ){
-                            if( resp['Materia'][j]['Hora'][0]['horaInicio'] == hora )   {
+
+                if (i == 0)  {
+                    this.horario.push(hora + '-' + (hora + 100));
+                } else {
+                    for ( var j = 0; j <= len; j++)    {
+                        console.log(resp['Materia'][j]['Hora'][0]['dia']);
+                        if ( resp['Materia'][j]['Hora'][0]['dia'] == this.dias[i] || resp['Materia'][j]['Hora'][1]['dia'] == this.dias[i] ){
+                            if ( resp['Materia'][j]['Hora'][0]['horaInicio'] == hora )   {
                                 this.horario.push(resp['Materia'][j]['mNombre']);
                                 flag = true;
-                            }
-                            else if( resp['Materia'][j]['Hora'][1]['horaInicio'] == hora )   {
+                            } else if ( resp['Materia'][j]['Hora'][1]['horaInicio'] == hora )   {
                                 this.horario.push(resp['Materia'][j]['mNombre']);
                                 flag = true;
-                            }
-                            else if( resp['Materia'][j]['Hora'][0]['horaFin'] == (hora + 55) ) {
+                            } else if ( resp['Materia'][j]['Hora'][0]['horaFin'] == (hora + 55) ) {
                                 this.horario.push(resp['Materia'][j]['mNombre']);
                                 flag = true;
                             }
                         }
-                        if(j == len)   {
-                            if(!flag)   {
+                        if (j == len)   {
+                            if (!flag)   {
                                 this.horario.push('');
                             }
                         }
                     }
                 }
-                
-                
             }
-            
-            
         }
-        
         console.log(this.horario);
-        
     });
+  }
+
+  toogleMenu() {
+      this.menuCtrl.toggle();
   }
 
 }
